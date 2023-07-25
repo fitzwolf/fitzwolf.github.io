@@ -1,0 +1,40 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.header {
+    text-align: center;
+}
+
+.header h1 {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.tabs {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.tab {
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+.about {
+    margin: 50px auto;
+    max-width: 600px;
+    text-align: center;
+}
+
+.navigation {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+}
+
+.content {
+    display: none;
+}
+
