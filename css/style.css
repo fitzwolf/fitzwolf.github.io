@@ -48,6 +48,10 @@ body {
     align-items: center;
 }
 
+.nav li {
+  display: inline-block;
+  /* Other styles */
+}
 
 /* styles.css */
 #nav-bar ul {
