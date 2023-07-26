@@ -102,3 +102,21 @@ body {
     height: auto;
   }
   
+  #chart-container {
+    display: inline-block;
+    vertical-align: top;
+}
+
+#investment-display {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 20px;
+}
+
+.grid .tick {
+  stroke: lightgray;
+  opacity: 0.7;
+}
+.grid path {
+  stroke-width: 0;
+}
