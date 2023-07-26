@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-annotation/2.5.1/d3-annotation.min.js" integrity="sha512-iBAeBWWWFb8HqSBcrqcz98iIpuVH1la39dEYHtyQ/pGpeCQTQVvLJOWAuhv2Q7JSHp9k7hWA7sGxU3hHJe+tFg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="js/nav.js"></script>
+    <script src="js/tracker.js"></script>
+    <title>Investment Tracker</title>
+</head>
+<body>
+    <div class="chart-header">
+        <h1>Investment Tracker</h1>
+    </div>
+    <div id="investment-input">
+        <label for="start-date">Start date:</label>
+        <input type="date" id="start-date" name="start-date" value="2007-12-01" min="2007-12-01" max="2021-01-01">
+        <label for="end-date">End date:</label>
+        <input type="date" id="end-date" name="end-date" value="2021-01-01" min="2007-12-01" max="2021-01-01">
+        <label for="investment">Investment:</label>
+        <input type="number" id="investment" name="investment" value="1000">
+        <button id="calculate">Calculate</button>
+    </div>
+    <div id="aapl-chart" class="chart"></div>
+    <div id="slv-chart" class="chart"></div>
+    <div id="spy-chart" class="chart"></div>
+    <div id="dia-chart" class="chart"></div>
+</body>
+</html>
