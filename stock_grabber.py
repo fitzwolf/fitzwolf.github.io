@@ -3,7 +3,7 @@ import pandas as pd
 
 try:
     # Download historical data as a pandas DataFrame
-    data = yf.download('DIA', start='2007-12-01', end='2023-01-01')
+    data = yf.download('MSFT', start='2007-12-01', end='2023-01-01')
 
     # If the DataFrame is empty, raise an exception
     if data.empty:
@@ -13,7 +13,7 @@ try:
     print(data.head())
 
     # Save the data to a CSV file
-    data.to_csv('data/dowjones_stock_data.csv')
+    data.to_csv('data/msft_stock_data.csv')
 
 except Exception as e:
     print(f'An error occurred: {e}')

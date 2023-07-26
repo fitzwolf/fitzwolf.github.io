@@ -30,7 +30,7 @@ window.onload = function() {
         'sheet3.html': 'Apple',
         'sheet4.html': 'SLV',
         'sheet5.html': 'SPY',
-        'sheet6.html': 'DIA',
+        'sheet6.html': 'Microsoft',
         'sheet7.html': 'Combined Results'
     }
 

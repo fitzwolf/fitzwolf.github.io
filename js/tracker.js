@@ -2,15 +2,15 @@ Promise.all([
     d3.csv('data/apple_stock_data.csv'),
     d3.csv('data/slv_stock_data.csv'),
     d3.csv('data/spy_stock_data.csv'),
-    d3.csv('data/dowjones_stock_data.csv')
+    d3.csv('data/msft_stock_data.csv')
 ]).then(function(values) {
     var appleData = values[0];
     var slvData = values[1];
     var spyData = values[2];
-    var diaData = values[3];
+    var msftData = values[3];
 
     var parseTime = d3.timeParse("%Y-%m-%d");
-    var stocks = ["Apple", "SLV", "SPY", "DIA"];
+    var stocks = ["Apple", "SLV", "SPY", "MSFT"];
     var color = d3.scaleOrdinal()
         .domain(stocks)
         .range(["steelblue", "green", "red", "purple"]);
@@ -30,13 +30,13 @@ Promise.all([
         d.close = +d.Close;
     });
 
-    diaData.forEach(function(d) {
+    msftData.forEach(function(d) {
         d.date = parseTime(d.Date);
         d.close = +d.Close;
     });
 
     // After parsing the data...
-    var allData = appleData.concat(slvData, spyData, diaData);
+    var allData = appleData.concat(slvData, spyData, msftData);
 
     var margin = {top: 20, right: 20, bottom: 80, left: 50},
         width = 960 - margin.left - margin.right,
@@ -63,7 +63,7 @@ Promise.all([
         .x(function(d) { return x(d.date); })
         .y(function(d) { return y(d.close); });
 
-    var lineDIA = d3.line()
+    var lineMSFT = d3.line()
         .x(function(d) { return x(d.date); })
         .y(function(d) { return y(d.close); });
 
@@ -109,13 +109,13 @@ Promise.all([
         .attr("d", lineSPY);
 
     svg.append("path")
-        .datum(diaData)
+        .datum(msftData)
         .attr("fill", "none")
         .attr("stroke", "purple")
         .attr("stroke-linejoin", "round")
         .attr("stroke-linecap", "round")
         .attr("stroke-width", 1.5)
-        .attr("d", lineDIA);
+        .attr("d", lineMSFT);
 
         var covidStart = parseTime("2020-03-12");
         var covidEnd = parseTime("2020-08-30");
@@ -223,30 +223,30 @@ Promise.all([
         var applePercentage = +d3.select("#apple-percentage").node().value / 100;
         var slvPercentage = +d3.select("#slv-percentage").node().value / 100;
         var spyPercentage = +d3.select("#spy-percentage").node().value / 100;
-        var diaPercentage = +d3.select("#dia-percentage").node().value / 100;
+        var msftPercentage = +d3.select("#msft-percentage").node().value / 100;
         
         var appleDataRange = appleData.filter(d => d.date >= startDate && d.date <= endDate);
         var slvDataRange = slvData.filter(d => d.date >= startDate && d.date <= endDate);
         var spyDataRange = spyData.filter(d => d.date >= startDate && d.date <= endDate);
-        var diaDataRange = diaData.filter(d => d.date >= startDate && d.date <= endDate);
+        var msftDataRange = msftData.filter(d => d.date >= startDate && d.date <= endDate);
         
         // Calculate the initial number of shares for each stock
         var appleShares = (investment * applePercentage) / appleDataRange[0].close;
         var slvShares = (investment * slvPercentage) / slvDataRange[0].close;
         var spyShares = (investment * spyPercentage) / spyDataRange[0].close;
-        var diaShares = (investment * diaPercentage) / diaDataRange[0].close;
+        var msftShares = (investment * msftPercentage) / msftDataRange[0].close;
         
         // Calculate the value of the shares at each date within the range
         appleDataRange.forEach(d => d.value = d.close * appleShares);
         slvDataRange.forEach(d => d.value = d.close * slvShares);
         spyDataRange.forEach(d => d.value = d.close * spyShares);
-        diaDataRange.forEach(d => d.value = d.close * diaShares);
+        msftDataRange.forEach(d => d.value = d.close * msftShares);
         
         // Calculate the total portfolio value at each date
         var totalValues = appleDataRange.map((d, i) => {
             return {
                 date: d.date,
-                value: d.value + slvDataRange[i].value + spyDataRange[i].value + diaDataRange[i].value
+                value: d.value + slvDataRange[i].value + spyDataRange[i].value + msftDataRange[i].value
             };
         });
 
@@ -255,7 +255,7 @@ Promise.all([
     d3.select("#apple-investment").text(`Initial Apple Investment: $${(appleShares * appleDataRange[0].close).toFixed(2)}`);
     d3.select("#slv-investment").text(`Initial SLV Investment: $${(slvShares * slvDataRange[0].close).toFixed(2)}`);
     d3.select("#spy-investment").text(`Initial SPY Investment: $${(spyShares * spyDataRange[0].close).toFixed(2)}`);
-    d3.select("#dia-investment").text(`Initial DIA Investment: $${(diaShares * diaDataRange[0].close).toFixed(2)}`);
+    d3.select("#msft-investment").text(`Initial msft Investment: $${(msftShares * msftDataRange[0].close).toFixed(2)}`);
     d3.select("#total-investment").text(`Total Investment: $${investment}`);
     
     document.getElementById("apple-investment").innerHTML = `Initial Apple Investment: $${(appleShares * appleDataRange[0].close).toFixed(2)}`;
@@ -267,8 +267,8 @@ Promise.all([
     document.getElementById("spy-investment").innerHTML = `Initial SPY Investment: $${(spyShares * spyDataRange[0].close).toFixed(2)}`;
     document.getElementById("spy-investment").style.color = color("SPY");
 
-    document.getElementById("dia-investment").innerHTML = `Initial DIA Investment: $${(diaShares * diaDataRange[0].close).toFixed(2)}`;
-    document.getElementById("dia-investment").style.color = color("DIA");
+    document.getElementById("msft-investment").innerHTML = `Initial Microsoft Investment: $${(msftShares * msftDataRange[0].close).toFixed(2)}`;
+    document.getElementById("msft-investment").style.color = color("MSFT");
 
 
     var selectedRangeXStart = x(startDate);
