@@ -8,20 +8,49 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-annotation/2.5.1/d3-annotation.min.js" integrity="sha512-iBAeBWWWFb8HqSBcrqcz98iIpuVH1la39dEYHtyQ/pGpeCQTQVvLJOWAuhv2Q7JSHp9k7hWA7sGxU3hHJe+tFg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="js/msft_stock.js"></script>
     <script src="js/nav.js"></script>
-    <title>Apple Stock Value</title>
+    <title>About the data</title>
 </head>
 
 <body>
-    <div class="chart-header">
-        <h1>Apple Stock Value Through Time</h1>
+    <!-- Navigation bar generated from nav.js -->
+    <div id="nav-bar"></div>
+
+    <!-- Centered region for the project description -->
+    <div class="flash-card">
+        <div class="flash-card-content">
+          
+        <h1>About the data</h1>
+        <p>
+            The data collected for this project was done using a simple python script to grab the ticker information
+            starting from December 03, 2007 (start of the Great Recession) until January 1, 2023. The tickers chosen for
+            this were AAPL, MSFT (Microsoft), SPY (an etf that closely mirrors S&P 500 performance) and SLV (an etf that
+            follows the performance of silver). All of the data was downloaded on July 25, 2023.
+<br><br>
+            Code used:
+            <pre><code>
+                import yfinance as yf
+                import pandas as pd
+                
+                try:
+                    # Download historical data as a pandas DataFrame
+                    data = yf.download('MSFT', start='2007-12-01', end='2023-01-01')
+                
+                    # If the DataFrame is empty, raise an exception
+                    if data.empty:
+                        raise ValueError('No data downloaded')
+                
+                    # Print the first few rows
+                    print(data.head())
+                
+                    # Save the data to a CSV file
+                    data.to_csv('data/msft_stock_data.csv')
+                
+                except Exception as e:
+                    print(f'An error occurred: {e}')
+                    </code></pre>
+        </p>
+        <!-- Add any other content here as needed -->
     </div>
-    <div class="chart-container">
-        <div id="msft-chart">
-        </div>
-        <div id="investment-value-display">
-            <div id="initial-investment"></div>
-            <div id="running-total"></div>
-        </div>
     </div>
 </body>
 

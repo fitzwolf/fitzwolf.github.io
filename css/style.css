@@ -120,3 +120,39 @@ body {
 .grid path {
   stroke-width: 0;
 }
+
+.flash-card {
+  width: 800px;
+  height: 600px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+  padding: 20px;
+  /* Add any other styles you want for the flash card */
+}
+
+.ticker-card {
+  width: 400px;
+  height: 300px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+  padding: 20px;
+  /* Add any other styles you want for the flash card */
+}
+
+/* Center the text content within the flash card */
+.flash-card-content {
+  text-align: center;
+  /* Add any other styles for the text content */
+}
+
+.project-description {
+  text-align: center;
+  background-color: #f2f2f2;
+  padding: 20px;
+  margin: 50px auto;
+  max-width: 600px;
+}
