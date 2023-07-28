@@ -1,5 +1,5 @@
 window.onload = function() {
-    var pages = ["index.html", "sheet1.html", "sheet2.html", "sheet3.html", "sheet4.html", "sheet5.html", "sheet6.html", "sheet7.html"];
+    var pages = ["sheet1.html", "sheet2.html", "sheet3.html", "sheet4.html", "sheet5.html", "sheet6.html", "sheet7.html"];
     var currentPage = window.location.pathname.split('/').pop();
   
     function getPrevPage() {
